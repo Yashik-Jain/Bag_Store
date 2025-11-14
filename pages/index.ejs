@@ -1,11 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome • MyApp</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent: #6c5ce7;
+      --muted: #6b7280;
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);color:#0f172a}
+
+    .container{max-width:1100px;margin:48px auto;padding:24px}
+    .grid{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center}
+
+    /* Hero */
+    .hero{padding:28px}
+    .eyebrow{display:inline-block;background:#eef2ff;color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:600;font-size:12px}
+    h1{font-size:34px;margin:18px 0 8px;line-height:1.05}
+    p.lead{color:var(--muted);margin:0 0 20px}
+
+    .features{display:flex;gap:12px;flex-wrap:wrap}
+    .feature{background:rgba(108,92,231,0.08);padding:10px 12px;border-radius:10px;font-weight:600;font-size:13px;color:var(--accent)}
+
+    /* Card/form */
+    .card{background:var(--card);border-radius:14px;padding:22px;box-shadow:0 6px 20px rgba(18,38,63,0.06)}
+    .form-title{font-weight:700;margin-bottom:6px}
+    .form-sub{color:var(--muted);font-size:13px;margin-bottom:16px}
+
+    form{display:flex;flex-direction:column;gap:12px}
+    label{font-size:13px;color:#344054}
+    input[type="text"],input[type="email"],input[type="password"]{width:100%;padding:12px;border-radius:8px;border:1px solid #e6e9ef;font-size:14px}
+    input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(108,92,231,0.06)}
+    .row{display:flex;gap:12px}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:10px;background:var(--accent);color:white;border:0;font-weight:700;cursor:pointer}
+    .btn.secondary{background:transparent;color:var(--accent);border:1px solid rgba(108,92,231,0.12)}
+
+    .small{font-size:12px;color:var(--muted)}
+
+    /* helper */
+    .muted{color:var(--muted);font-size:13px}
+
+    @media (max-width:920px){
+      .grid{grid-template-columns:1fr;}
+      .container{margin:24px 16px}
+    }
+  </style>
 </head>
 <body>
-    Heyy
+  <div class="container">
+    <div class="grid">
+      <!-- Left: Hero -->
+      <section class="hero">
+        <span class="eyebrow">New • Try for free</span>
+        <h1>Build faster. Ship smarter.</h1>
+        <p class="lead">A lightweight starter app to manage users and authentication. Create an account to get started—no payment required.</p>
+
+        <div style="height:16px"></div>
+        <div class="features">
+          <div class="feature">Secure auth</div>
+          <div class="feature">Responsive UI</div>
+          <div class="feature">Easy APIs</div>
+        </div>
+
+        <div style="height:18px"></div>
+        <p class="muted">Already have an account? <a href="/users/login" style="color:var(--accent);text-decoration:none;font-weight:600">Sign in</a></p>
+      </section>
+
+      <!-- Right: Registration card -->
+      <aside class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <div>
+            <div class="form-title">Create account</div>
+            <div class="form-sub">Start your free trial — 14 days included</div>
+          </div>
+          <div style="font-size:12px;color:var(--muted)">Free • No credit card</div>
+        </div>
+
+        <!-- EJS: show flash message if provided -->
+        
+        
+
+        <form action="/users/register" method="POST" autocomplete="on">
+          <div>
+            <label for="fullname">Full name</label>
+            <input id="fullname" name="fullname" type="text" placeholder="Your full name" required />
+          </div>
+
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+
+          <div>
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Create a password" minlength="6" required />
+          </div>
+
+          <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:6px">
+            <button type="submit" class="btn">Create account</button>
+            <button type="button" class="btn secondary" onclick="document.getElementById('password').type = document.getElementById('password').type === 'password' ? 'text' : 'password'">Show</button>
+          </div>
+
+          <div style="margin-top:10px" class="small">By continuing, you agree to our <a href="#" style="color:var(--accent);text-decoration:none">Terms</a> and <a href="#" style="color:var(--accent);text-decoration:none">Privacy</a>.</div>
+        </form>
+
+      </aside>
+
+<!-- Login Card -->
+<aside class="card" style="margin-top:24px">
+  <div>
+    <div class="form-title">Login</div>
+    <div class="form-sub">Access your account</div>
+  </div>
+
+  <form action="/users/login" method="POST" autocomplete="on">
+    <div>
+      <label for="login-email">Email</label>
+      <input id="login-email" name="email" type="email" placeholder="you@example.com" required />
+    </div>
+
+    <div>
+      <label for="login-password">Password</label>
+      <input id="login-password" name="password" type="password" placeholder="Enter password" required />
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+      <button type="submit" class="btn">Login</button>
+      <button type="button" class="btn secondary" onclick="document.getElementById('login-password').type = document.getElementById('login-password').type === 'password' ? 'text' : 'password'">Show</button>
+    </div>
+  </form>
+</aside>
+    </div>
+
+    <!-- Footer small -->
+    <div style="text-align:center;margin-top:28px;color:var(--muted);font-size:13px">Made with ♥ • Example App • <span style="font-weight:600">v1.0</span></div>
+  </div>
 </body>
 </html>
