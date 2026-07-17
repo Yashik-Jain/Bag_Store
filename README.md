@@ -50,7 +50,7 @@ A backend-focused e-commerce application developed using **Node.js**, **Express*
 ##  Installation
 
 ```bash
-git clone (https://github.com/Yashik-Jain/Bag_Store.git)
+git clone https://github.com/Yashik-Jain/Bag_Store.git
 
 cd bag-store
 
